@@ -1,0 +1,55 @@
+{
+  "_embedded" : {
+    "customers" : [ {
+      "id" : 1,
+      "name" : "Mouad",
+      "email" : "mouad@gmail.com",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8081/customers/1"
+        },
+        "customer" : {
+          "href" : "http://localhost:8081/customers/1"
+        }
+      }
+    }, {
+      "id" : 2,
+      "name" : "Yassine",
+      "email" : "yassine@gmail.com",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8081/customers/2"
+        },
+        "customer" : {
+          "href" : "http://localhost:8081/customers/2"
+        }
+      }
+    }, {
+      "id" : 3,
+      "name" : "Salim",
+      "email" : "salim@gmail.com",
+      "_links" : {
+        "self" : {
+          "href" : "http://localhost:8081/customers/3"
+        },
+        "customer" : {
+          "href" : "http://localhost:8081/customers/3"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8081/customers"
+    },
+    "profile" : {
+      "href" : "http://localhost:8081/profile/customers"
+    }
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 3,
+    "totalPages" : 1,
+    "number" : 0
+  }
+}
