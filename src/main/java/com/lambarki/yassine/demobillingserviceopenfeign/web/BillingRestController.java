@@ -9,6 +9,7 @@ import com.lambarki.yassine.demobillingserviceopenfeign.repositories.BillReposit
 import com.lambarki.yassine.demobillingserviceopenfeign.repositories.ProductItemRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ public class BillingRestController {
     private ProductItemRestClient productItemRestClient;
 
     @GetMapping(path = "/fullBill/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Bill getBill(@PathVariable(name = "id") Long id) {
        Bill bill = billRepository.findById(id).get();
         Customer customerById = customerRestClient.getCustomerById(bill.getCustomerId());
