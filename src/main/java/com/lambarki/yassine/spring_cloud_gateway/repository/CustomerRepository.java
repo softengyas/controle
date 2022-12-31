@@ -10,7 +10,7 @@ import java.util.Optional;
 @RepositoryRestResource
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    @PreAuthorize("hasAuthority('USER')")
+    //@PreAuthorize("hasAuthority('USER')")
     @Override
     Optional<Customer> findById(Long id);
 }
