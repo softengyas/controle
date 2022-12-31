@@ -10,6 +10,7 @@ import com.lambarki.yassine.demobillingserviceopenfeign.order.service.repositori
 import com.lambarki.yassine.demobillingserviceopenfeign.order.service.repositories.ProductItemRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ public class OderRestController {
     private InventoryRestClientService inventoryRestClientService;
 
     @GetMapping("/fullOrder/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Order getOrder(@PathVariable Long id){
         Order order=orderRepository.findById(id).get();
         Customer customer=customerRestClientService.customerById(order.getCustomerId());
