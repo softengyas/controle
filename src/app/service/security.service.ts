@@ -9,7 +9,18 @@ export class SecurityService {
   constructor(public kcService: KeycloakService) {
     this.init();
   }
-  init(){
+
+  init() {
+    this.kcService.keycloakEvents$.subscribe({
+      next: (e) => {
+        if (e.type === KeycloakEventType.OnAuthSuccess) {
+          this.kcService.loadUserProfile().then(profile => this.profile = profile);
+        }
+      }
+    });
+  }
+
+  /*init(){
     this.kcService.keycloakEvents$.subscribe({
       next:(e)=> {
         if (e.type === KeycloakEventType.OnAuthSuccess) {
@@ -18,15 +29,21 @@ export class SecurityService {
         }
     }
     })
-  }
+  }*/
 
-  public hasRole(roles:string[]):boolean{
+  /*public hasRole(roles:string[]):boolean{
     let userRoles = this.kcService.getUserRoles();
     for(let role of roles){
       if (userRoles.includes(role)) return true;
 
     }
     return false;
+  }*/
+
+  public hasRole(roles: string[]): boolean {
+    let userRoles = this.kcService.getUserRoles();
+    return roles.every(role => userRoles.includes(role));
   }
+
 
 }

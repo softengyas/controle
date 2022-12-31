@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {SecurityService} from "./service/security.service";
 
 @Component({
   selector: 'app-root',
@@ -8,12 +9,23 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'invoice-yassine-lambarki';
 
-  public data$: any;
 
 
-  constructor() {}
+  constructor(public securityService : SecurityService) {}
 
   ngOnInit() {
   }
 
+  async login() {
+    await this.securityService.kcService.login({
+      redirectUri : window.location.origin
+    });
+    console.log(this.securityService.profile?.firstName)
+  }
+
+  onlogout() {
+    this.securityService.kcService.logout(
+      window.location.origin
+    );
+  }
 }
